@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -13,6 +14,7 @@
     <h1 class="column is-full has-text-centered has-text-white pt-5">Weather Dashboard</h1>
 </header>
 
+<!-- Creates Side bar/search/search history -->
 <body class="has-background-light">
     <section class="columns">
         <div class="column is-one-quarter">
@@ -35,9 +37,10 @@
             </div>
         </div>
 
+        <!-- Creates Text area with Today's information -->
         <section class="column is-two-thirds">
             <div class="weather pl-2">
-                <h2>"City Info"</h2>
+                <h2 id="currentDate">"City Info"</h2>
                 <p>Temp:</p>
                 <p>Wind:</p>
                 <p>Humidity:</p>
@@ -45,39 +48,40 @@
             </div>
             <br>
 
+            <!-- gnerates cards for 5 day forecast -->
             <h3 class="ml-2">5-Day Forecast:</h3>
             <br>
             <section class="columns">
                 <div id="card1" class="column is-one-fifth card mr-1">
-                    <p>"Date"</p>
+                    <p id="date-1"></p>
                     <img src="" alt="Weather-Icon">
                     <p>Temp:</p>
                     <p>Wind:</p>
                     <p>Humidity:</p>
                 </div>
                 <div id="card2" class="column is-one-fifth card mr-1">
-                    <p>"Date"</p>
+                    <p id="date-2"></p>
                     <img src="" alt="Weather-Icon">
                     <p>Temp:</p>
                     <p>Wind:</p>
                     <p>Humidity:</p>
                 </div>
                 <div id="card3" class="column is-one-fifth card mr-1">
-                    <p>"Date"</p>
+                    <p id="date-3"></p>
                     <img src="" alt="Weather-Icon">
                     <p>Temp:</p>
                     <p>Wind:</p>
                     <p>Humidity:</p>
                 </div>
                 <div id="card4" class="column is-one-fifth card mr-1">
-                    <p>"Date"</p>
+                    <p id="date-4"></p>
                     <img src="" alt="Weather-Icon">
                     <p>Temp:</p>
                     <p>Wind:</p>
                     <p>Humidity:</p>
                 </div>
                 <div id="card5" class="column is-one-fifth card">
-                    <p>"Date"</p>
+                    <p id="date-5"></p>
                     <img src="" alt="Weather-Icon">
                     <p>Temp:</p>
                     <p>Wind:</p>
@@ -91,3 +95,9 @@
 </footer>
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="/assets/js/script.js"></script>
