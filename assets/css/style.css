@@ -1,15 +1,16 @@
 h1 {
     background: linear-gradient(to right, #3b6dc3, #230555);
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
 }
 
 h2 {
     font-weight: bold;
-    font-size: 19px;
+    font-size: 30px;
 }
 
 h3 {
+    font-size: 23px;
     font-weight: bold;
 
 }
