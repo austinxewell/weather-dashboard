@@ -2,6 +2,9 @@
 searchEntry = $("#input");
 searchBtnEl = $("#searchBtn")
 
+//sets an empty array
+var searchHistory = [];
+
 
 // date display handler
 var dateDisplayHandler = function () {
@@ -43,6 +46,7 @@ searchBtnEl.click(function() {
     var searchEntry = $("#input").val().trim();
     console.log(searchEntry + ' was searched.');
 })
+
 
 
 
