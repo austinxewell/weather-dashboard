@@ -1,4 +1,4 @@
-h1 {
+header {
     background: linear-gradient(to right, #3b6dc3, #230555);
     font-size: 30px;
     font-weight: bold;
@@ -21,6 +21,10 @@ button {
 
 textarea {
     width: 100%;
+    height: 30px;
+    resize: none;
+    font-size: 20px;
+    text-align: center;
 }
 
 .search {
@@ -47,4 +51,15 @@ textarea {
     background-color: #144b61;
     color: white;
     border-radius: 10px;
+    text-align: center;
+}
+
+footer {
+    background: linear-gradient(to right, #3b6dc3, #230555);
+}
+
+@media only screen and (max-width: 751px) {
+    .card {
+        border: solid;
+    }
 }
