@@ -6,75 +6,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<header>
-    <h1>Weather Dashboard</h1>
+<header class="columns">
+    <h1 class="column is-full has-text-centered has-text-white pt-5">Weather Dashboard</h1>
 </header>
 
 <body>
-    <section>
-        <div>
-            <h2>Search for a City:</h2>
-            <textarea id="" placeholder="Enter City"></textarea>
+    <section class="columns">
+        <div class="column is-one-quarter">
+            <div>
+                <h2>Search for a City:</h2>
+                <textarea id="" placeholder="Enter City"></textarea>
+                <br>
+                <button>Search</button>
+            </div>
+        
+            <div>
+                <p>search history 1</p>
+                <p>search history 2</p>
+                <p>search history 3</p>
+                <p>search history 4</p>
+                <p>search history 5</p>
+                <p>search history 6</p>
+                <p>search history 7</p>
+                <p>search history 8</p>
+            </div>
+        </div>
+
+        <section class="column is-two-thirds">
+            <h2>"City Info"</h2>
+            <p>Temp:</p>
+            <p>Wind:</p>
+            <p>Humidity:</p>
+            <p>UV Index</p>
+
             <br>
-            <button>Search</button>
-        </div>
-        <div>
-            <p>search history 1</p>
-            <p>search history 2</p>
-            <p>search history 3</p>
-            <p>search history 4</p>
-            <p>search history 5</p>
-            <p>search history 6</p>
-            <p>search history 7</p>
-            <p>search history 8</p>
-        </div>
-    </section>
-    <section>
-        <h2>City Info</h2>
-        <p>Temp:</p>
-        <p>Wind:</p>
-        <p>Humidity:</p>
-        <p>UV Index</p>
-    </section>
-    <section>
-        <h3>5-Day Forecast:</h3>
-        <div id="card1">
-            <p>"Date"</p>
-            <img src="" alt="Weather-Icon">
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div id="card2">
-            <p>"Date"</p>
-            <img src="" alt="Weather-Icon">
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div id="card3">
-            <p>"Date"</p>
-            <img src="" alt="Weather-Icon">
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div id="card4">
-            <p>"Date"</p>
-            <img src="" alt="Weather-Icon">
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
-        <div id="card5">
-            <p>"Date"</p>
-            <img src="" alt="Weather-Icon">
-            <p>Temp:</p>
-            <p>Wind:</p>
-            <p>Humidity:</p>
-        </div>
+
+            <h3>5-Day Forecast:</h3>
+            
+            <section class="columns">
+                <div id="card1" class="column is-one-fifth">
+                    <p>"Date"</p>
+                    <img src="" alt="Weather-Icon">
+                    <p>Temp:</p>
+                    <p>Wind:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div id="card2" class="column is-one-fifth">
+                    <p>"Date"</p>
+                    <img src="" alt="Weather-Icon">
+                    <p>Temp:</p>
+                    <p>Wind:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div id="card3" class="column is-one-fifth">
+                    <p>"Date"</p>
+                    <img src="" alt="Weather-Icon">
+                    <p>Temp:</p>
+                    <p>Wind:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div id="card4" class="column is-one-fifth">
+                    <p>"Date"</p>
+                    <img src="" alt="Weather-Icon">
+                    <p>Temp:</p>
+                    <p>Wind:</p>
+                    <p>Humidity:</p>
+                </div>
+                <div id="card5" class="column is-one-fifth">
+                    <p>"Date"</p>
+                    <img src="" alt="Weather-Icon">
+                    <p>Temp:</p>
+                    <p>Wind:</p>
+                    <p>Humidity:</p>
+                </div>
+            </section>
+
+
+
+
+
+        </section>
+
+
     </section>
 </body>
 </html>
