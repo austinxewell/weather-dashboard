@@ -20,9 +20,9 @@
         <div class="column is-one-quarter">
             <div class="search ml-2 mb-2 pb-2">
                 <h2>Search for a City:</h2>
-                <textarea id="" placeholder="Enter City"></textarea>
+                <textarea id="input" placeholder="Enter City"></textarea>
                 <br>
-                <button class="button is-info">Search</button>
+                <button id="searchBtn" class="button is-info">Search</button>
             </div>
             
             <div class="history">
@@ -40,8 +40,8 @@
         <!-- Creates Text area with Today's information -->
         <section class="column is-two-thirds">
             <div class="weather pl-2">
-                <h2 id="currentDate">"City Info"</h2>
-                <p>Temp:</p>
+                <h2 id="currentDate"></h2><img id="currentIcon" src="" alt="">
+                <p id="currentTemp">Temp:</p>
                 <p>Wind:</p>
                 <p>Humidity:</p>
                 <p>UV Index</p>

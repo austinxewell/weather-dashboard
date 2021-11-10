@@ -1,3 +1,8 @@
+//vars for search info
+searchEntry = $("#input");
+searchBtnEl = $("#searchBtn")
+
+
 // date display handler
 var dateDisplayHandler = function () {
     // current day
@@ -24,6 +29,26 @@ var dateDisplayHandler = function () {
     var day5 = moment().add("day", 5).format("ddd M/DD/YYYY");
     $("#date-5").text(day5);
 }
+
+//search button event listener
+searchEntry.keypress(function(event) {
+    if (event.which == 13) {
+        event.preventDefault();
+        searchBtnEl.click();
+    }
+})
+
+//search button click listener
+searchBtnEl.click(function() {
+    var searchEntry = $("#input").val().trim();
+    console.log(searchEntry + ' was searched.');
+})
+
+
+
+
+
+
 
 setInterval(dateDisplayHandler, 3600000);
 dateDisplayHandler();
