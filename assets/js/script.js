@@ -1,16 +1,15 @@
-//vars for search info
-searchEntry = $("#input");
-searchBtnEl = $("#searchBtn")
+// dom elements
+var searchBtnEl = $("#search-btn");
+var searchEntry = $("#input");
 
-//sets an empty array
+// saved searches array
 var searchHistory = [];
-
 
 // date display handler
 var dateDisplayHandler = function () {
     // current day
     var currentDay = moment().format("ddd M/DD/YYYY");
-    $("#currentDate").text("("+currentDay+")");
+    $("#current-date").text("("+currentDay+")");
 
     // tomorrow
     var day1 = moment().add("day", 1).format("ddd M/DD/YYYY");
@@ -33,7 +32,7 @@ var dateDisplayHandler = function () {
     $("#date-5").text(day5);
 }
 
-//search button event listener
+// search button 'enter' listener
 searchEntry.keypress(function(event) {
     if (event.which == 13) {
         event.preventDefault();
@@ -41,39 +40,58 @@ searchEntry.keypress(function(event) {
     }
 })
 
-$('#searchHistoryContainer').on('click', "button", function(event) {
-    var cityName = event.target.innerText;
-    geocode(cityName)
+// search button click listener
+searchBtnEl.click(function() {
+    // grab value
+    var searchEntry = $("#input").val().trim();
+    
+    console.log(searchEntry + " was searched.");
+    
+    // send to geocoding function
+    geocode(searchEntry);
+    
+    $("#input").val("");
 })
 
+// search history button click listener
+$("#search-history-container").on("click", "button", function(event) {
+    var cityName = event.target.innerText;
+
+    // send to geocoding function
+    geocode(cityName);
+})
+
+// geocode users search to get lat/lon for api call
 var geocode = function(cityName) {
+    // set url
     var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&appid=cccf269a77ddb6c94abd87b983498833";
-
-    fetch(apiUrl).then(function(res) {
-        if (res.ok) {
-            res.json().then(function(res) {
-                console.log(res);
-
-                //city name and display
-                var cityName = res[0].name;
-                $('#city').text(cityName);
-
-                //save to local storage
+    
+    // fetch geocode info
+    fetch(apiUrl).then(function(repsonse) {
+        if (repsonse.ok) {
+            repsonse.json().then(function(response) {
+                console.log(response);
+                
+                // grab city name and display
+                var cityName = response[0].name;
+                $("#city").text(cityName);
+                
+                // save to local data for history
                 saveSearch(cityName);
+                
+                // grab lat/lon and send to fetcher
+                var lat = response[0].lat
+                var lon = response[0].lon
+                fetcher(lat, lon);
 
-                //grab lat/lon and send to fetcher function
-                // var lat = res[0].lat
-                // var lon = res[0].lon
-                // fetcher(lat, lon);
-
-                //load local storage
-                loadHistory()
+                // load history and update with new button
+                loadHistory();
             })
         }
     })
-}
+} 
 
-
+// function to fetch and parse api
 var fetcher = function(lat, lon) {
     // set url
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=cccf269a77ddb6c94abd87b983498833"
@@ -86,33 +104,33 @@ var fetcher = function(lat, lon) {
                 // grab weather icon
                 var weatherIcon = response.current.weather[0].icon;
                 var iconUrl = "http://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
-                $("#currentIcon").attr("src", iconUrl);
+                $("#current-icon").attr("src", iconUrl);
                 
                 // grab temp
                 var temp = response.current.temp + " °F";
-                $("#currentTemp").text(temp);
+                $("#current-temp").text(temp);
                 
                 // grab wind
                 var wind = response.current.wind_speed + " MPH";
-                $("#currentWind").text(wind);
+                $("#current-wind").text(wind);
                 
                 // grab humidity
                 var humidity = response.current.humidity + "%";
-                $("#currentHumidity").text(humidity);
+                $("#current-humidity").text(humidity);
                 
                 // grab uvi
                 var uvi = response.current.uvi;
-                $("#currentUV").text(uvi);
+                $("#current-uv").text(uvi);
                 // set uvi color
                 if (uvi >= 0 && uvi <= 2) {
-                    $("#currentUV").removeClass()
-                    $("#currentUV").addClass("uv-favorable")
+                    $("#current-uv").removeClass()
+                    $("#current-uv").addClass("uv-favorable")
                 } else if (uvi > 2 && uvi <= 7) {
-                    $("#currentUV").removeClass()
-                    $("#currentUV").addClass("uv-moderate")
+                    $("#current-uv").removeClass()
+                    $("#current-uv").addClass("uv-moderate")
                 } else {
-                    $("#currentUV").removeClass()
-                    $("#currentUV").addClass("uv-severe")
+                    $("#current-uv").removeClass()
+                    $("#current-uv").addClass("uv-severe")
                 }
                 
                 // loop through daily key and grab/display data
@@ -147,49 +165,34 @@ var saveSearch = function(cityName) {
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 
-
-
-
-
-//search button click listener
-searchBtnEl.click(function() {
-    var searchEntry = $("#input").val().trim();
-    console.log(searchEntry + ' was searched.');
-})
-
-//save search to local storge
-var saveSearch = function(cityName) {
-    searchHistory.push(cityName);
-
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-}
-
 var loadHistory = function() {
-    searchHistory = JSON.parse(localStorage.getItem('searchHistroy'));
+    // grab from local storage
+    searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 
     if (!searchHistory) {
-        searchHistory = []
+        searchHistory = [];
     }
 
-    //clear old buttons
-    $('#searchHistoryContainer').htlm('')
-    //create array to delete duplicates
+    // clear old buttons
+    $("#search-history-container").html("");
+
+    // create unique array to clear duplicate entries
     const uniqueSearchHistory = [...new Set(searchHistory)];
 
-    //for loop to create buttons from last 7 searches
-    for(var i = uniqueSearchHistory.length - 1; i>= uniqueSearchHistory.length - 7; i--) {
-        
+    // loop through and create buttons from the last 7 searched cities
+    for (var i = uniqueSearchHistory.length-1; i >= uniqueSearchHistory.length-7; i--) {
+
+        // check for undefined/empty slots
         if (uniqueSearchHistory[i]) {
+            // create new buttons
             var cityName = uniqueSearchHistory[i];
-            $("<button class='historyText ml-2 mb-1'> "+cityName+" </button>").appendTo("searchHistory");
-            console.log('button created')
+            $("<button class='btn' type='button'>"+cityName+"</button>").appendTo("#search-history-container");
         }
     }
 }
 
-
-
-
-
 setInterval(dateDisplayHandler, 3600000);
+
 dateDisplayHandler();
+
+loadHistory();
