@@ -74,6 +74,81 @@ var geocode = function(cityName) {
 }
 
 
+var fetcher = function(lat, lon) {
+    // set url
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=cccf269a77ddb6c94abd87b983498833"
+    
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(response) {
+                console.log(response);
+                
+                // grab weather icon
+                var weatherIcon = response.current.weather[0].icon;
+                var iconUrl = "http://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
+                $("#currentIcon").attr("src", iconUrl);
+                
+                // grab temp
+                var temp = response.current.temp + " °F";
+                $("#currentTemp").text(temp);
+                
+                // grab wind
+                var wind = response.current.wind_speed + " MPH";
+                $("#currentWind").text(wind);
+                
+                // grab humidity
+                var humidity = response.current.humidity + "%";
+                $("#currentHumidity").text(humidity);
+                
+                // grab uvi
+                var uvi = response.current.uvi;
+                $("#currentUV").text(uvi);
+                // set uvi color
+                if (uvi >= 0 && uvi <= 2) {
+                    $("#currentUV").removeClass()
+                    $("#currentUV").addClass("uv-favorable")
+                } else if (uvi > 2 && uvi <= 7) {
+                    $("#currentUV").removeClass()
+                    $("#currentUV").addClass("uv-moderate")
+                } else {
+                    $("#currentUV").removeClass()
+                    $("#currentUV").addClass("uv-severe")
+                }
+                
+                // loop through daily key and grab/display data
+                for (var i = 0; i < 5; i++) {
+                    // weather icon
+                    var weatherIcon = response.daily[i].weather[0].icon;
+                    var iconUrl = "http://openweathermap.org/img/wn/"+weatherIcon+"@2x.png"
+                    $("#icon-" + (i + 1)).attr("src", iconUrl);
+                    
+                    // temp
+                    var temp = response.daily[i].temp.max + " °F";
+                    $("#temp-" + (i + 1)).text(temp);
+                    
+                    // wind
+                    var wind = response.daily[i].wind_speed + " MPH";
+                    $("#wind-" + (i + 1)).text(wind);
+                    
+                    // grab humidity
+                    var humidity = response.daily[i].humidity + "%";
+                    $("#humidity-" + (i + 1)).text(humidity);
+                }
+            })
+        }
+    })
+}
+
+// save search to localstorage
+var saveSearch = function(cityName) {
+    // push to array
+    searchHistory.push(cityName);
+    
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+
+
+
 
 
 //search button click listener
@@ -94,6 +169,21 @@ var loadHistory = function() {
 
     if (!searchHistory) {
         searchHistory = []
+    }
+
+    //clear old buttons
+    $('#searchHistoryContainer').htlm('')
+    //create array to delete duplicates
+    const uniqueSearchHistory = [...new Set(searchHistory)];
+
+    //for loop to create buttons from last 7 searches
+    for(var i = uniqueSearchHistory.length - 1; i>= uniqueSearchHistory.length - 7; i--) {
+        
+        if (uniqueSearchHistory[i]) {
+            var cityName = uniqueSearchHistory[i];
+            $("<button class='historyText ml-2 mb-1'> "+cityName+" </button>").appendTo("searchHistory");
+            console.log('button created')
+        }
     }
 }
 
