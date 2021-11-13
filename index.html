@@ -17,7 +17,7 @@
 <!-- Creates Side bar/search/search history -->
 <body class="has-background-light">
     <section class="columns">
-        <div class="column is-one-quarter">
+        <div id="searchHistoryContainer" class="column is-one-quarter">
             <div class="search ml-2 mb-2 pb-2">
                 <h2>Search for a City:</h2>
                 <textarea id="input" placeholder="Enter City"></textarea>
@@ -25,7 +25,7 @@
                 <button id="searchBtn" class="button is-info">Search</button>
             </div>
             
-            <div id="searchHistoryContainer" class="history">
+            <div id="" class="history">
                 <p class="historyText ml-2 mb-1">search history 1</p>
                 <p class="historyText ml-2 mb-1">search history 2</p>
                 <p class="historyText ml-2 mb-1">search history 3</p>
@@ -40,7 +40,8 @@
         <!-- Creates Text area with Today's information -->
         <section class="column is-two-thirds">
             <div class="weather pl-2">
-                <h2 id="currentDate"></h2><img id="currentIcon" src="" alt="">
+                <h2 id="city"></h2>
+                <h2 id="city currentDate"></h2><img id="currentIcon" src="" alt="">
                 <p id="currentTemp">Temp:</p>
                 <p>Wind:</p>
                 <p>Humidity:</p>
