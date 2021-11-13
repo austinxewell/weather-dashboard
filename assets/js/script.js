@@ -41,14 +41,31 @@ searchEntry.keypress(function(event) {
     }
 })
 
+
+
+
+
+
 //search button click listener
 searchBtnEl.click(function() {
     var searchEntry = $("#input").val().trim();
     console.log(searchEntry + ' was searched.');
 })
 
+//save search to local storge
+var saveSearch = function(cityName) {
+    searchHistory.push(cityName);
 
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
 
+var loadHistory = function() {
+    searchHistory = JSON.parse(localStorage.getItem('searchHistroy'));
+
+    if (!searchHistory) {
+        searchHistory = []
+    }
+}
 
 
 
