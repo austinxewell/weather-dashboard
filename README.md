@@ -1,7 +1,9 @@
 # Weather Dashboard 
   [![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)
   # Description
-  This is a weather dashboard created with html, css and javascript along with tools like moment.js and bootstrap to pull data from a web api to give you a current and 5 day forcast for a city you are looking for. This webpage displays weather, temp, winds, and humidity. For the current day it will also display uv index. 
+  This is a weather dashboard created with html, css and javascript along with tools like moment.js and bootstrap to pull data from a web api to give you a current and 5 day forcast for a city you are looking for. This webpage displays weather, temp, winds, and humidity. For the current day it will also display uv index. Some technologies used in this project include moment, API's, local storage minipulation, Bulma , and DOM minipulation
+
+
   # Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
